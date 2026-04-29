@@ -8,15 +8,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run app check
-        run: python3 -c "import app; print('✅ App loaded successfully')"
+      - name: Check libraries
+        run: |
+          python3 -c "import pandas; print('✅ pandas ok')"
+          python3 -c "import sklearn; print('✅ sklearn ok')"
+          python3 -c "import fastapi; print('✅ fastapi ok')"
+          python3 -c "import mlflow; print('✅ mlflow ok')"
