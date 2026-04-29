@@ -13,10 +13,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install fastapi uvicorn pandas numpy scikit-learn mlflow joblib xgboost lightgbm
 
       - name: Check libraries
         run: |
@@ -24,3 +25,4 @@ jobs:
           python3 -c "import sklearn; print('✅ sklearn ok')"
           python3 -c "import fastapi; print('✅ fastapi ok')"
           python3 -c "import mlflow; print('✅ mlflow ok')"
+          echo "✅ All checks passed!"
